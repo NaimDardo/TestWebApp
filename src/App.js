@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import { lazy, Suspense, useEffect } from 'react';
 /// Components
-
+///
 import Index from './jsx/index';
 import { connect, useDispatch } from 'react-redux';
 import {  Route, Routes, useNavigate,useLocation, useParams } from 'react-router-dom';
