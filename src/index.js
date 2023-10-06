@@ -19,7 +19,6 @@ ReactDOM.render(
                     <ThemeContext>
                         <App />
                     </ThemeContext>  
-                 { /*   <App /> */  }
                 </BrowserRouter>    
             </SimpleReactLightbox>
         </Provider>	
@@ -27,4 +26,4 @@ ReactDOM.render(
     document.getElementById("root")
 );
 
-// reportWebVitals();
+reportWebVitals();
