@@ -12,6 +12,7 @@ import { GlobalFilter } from './GlobalFilter';
 import { useTable, useGlobalFilter, useFilters, usePagination, useSortBy } from 'react-table';
 
 import './filtering.css';
+import ConfigData from '../../../config.json'
 
 function refreshPage() {
     window.location.reload(false);
@@ -25,10 +26,10 @@ export const Todo = () =>{
 	let current_user_id = current_user['id']
 
 	const getAppointments = async () => {
-		return await axios.get(`http://localhost:8000/users/appointmentsA/${current_user_id}`)
+		return await axios.get(`${ConfigData.SERVER_URL_PROD}/users/appointmentsA/${current_user_id}`)
 	}
 	const getPW = async (pw_mail) => {
-		return await axios.get(`http://localhost:8000/PW/${pw_mail}`)
+		return await axios.get(`${ConfigData.SERVER_URL_PROD}/PW/${pw_mail}`)
 	}
 	const [contents, setContents] = useState([]);
 
@@ -92,11 +93,11 @@ export const Todo = () =>{
     //update data function
   
 	const ConfirmAppointment = async (appo_id) => {
-		await axios.put(`http://localhost:8000/ConfirmAppointment/${appo_id}`,{})
+		await axios.put(`${ConfigData.SERVER_URL_PROD}/ConfirmAppointment/${appo_id}`,{})
 		refreshPage()	
 	}
 	const RejectAppointment = async (appo_id) => {
-		await axios.put(`http://localhost:8000/RejectAppointment/${appo_id}`,{})
+		await axios.put(`${ConfigData.SERVER_URL_PROD}/RejectAppointment/${appo_id}`,{})
 		refreshPage()
 	}
 	

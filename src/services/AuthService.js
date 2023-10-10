@@ -1,5 +1,6 @@
 import axios from 'axios';
 import swal from "sweetalert";
+import ConfigData from '../config.json';
 
 // import qs from 'qs';
 import {
@@ -14,7 +15,7 @@ export function signUp(data) {
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'http://localhost:8000/users/register',
+        url: ConfigData.SERVER_URL_PROD +'/users/register',
         headers: { 
           'Content-Type': 'application/json', 
           'Accept': 'application/json'
@@ -34,7 +35,7 @@ export function login(email, password) {
       let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'http://localhost:8000/users/login',
+        url: ConfigData.SERVER_URL_PROD +'/users/login',
         headers: { 
           'Content-Type': 'application/x-www-form-urlencoded', 
           'Accept': 'application/json'
@@ -50,7 +51,7 @@ export function logout() {
     };
     
     return axios.post(
-        `http://localhost:8000/users/logout`,
+        `${ConfigData.SERVER_URL_PROD}/users/logout`,
         postData,
     );
 }

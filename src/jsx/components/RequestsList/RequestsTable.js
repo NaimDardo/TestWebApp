@@ -8,6 +8,8 @@ import { COLUMNS, GROUPED_COLUMNS } from './Columns';
 import { GlobalFilter } from './GlobalFilter'; 
 import './filtering.css';
 import axios from 'axios';
+import ConfigData from "../../../config.json";
+
 function refreshPage() {
     window.location.reload(false);
 }
@@ -16,7 +18,7 @@ export const RequestsTable = () => {
 	let current_user = JSON.parse(localStorage.getItem("userDetails"))
 	let current_user_id = current_user['id']
 	async function getRequests () {
-		return await axios.get(`http://localhost:8000/nurses/RequestsA/${current_user_id}`)
+		return await axios.get(`${ConfigData.SERVER_URL_PROD}/nurses/RequestsA/${current_user_id}`)
 		
 	}
 	const [dataC, setDataC] = useState([]);
@@ -31,11 +33,11 @@ export const RequestsTable = () => {
 	const data = useMemo( () => dataC, [dataC])
 	
 	const ConfirmRequest = async (req_id) => {
-		await axios.put(`http://localhost:8000/ConfirmRequest/${req_id}`,{})
+		await axios.put(`${ConfigData.SERVER_URL_PROD}/ConfirmRequest/${req_id}`,{})
 		refreshPage()	
 	}
 	const RejectRequest = async (req_id) => {
-		await axios.put(`http://localhost:8000/RejectRequest/${req_id}`,{})
+		await axios.put(`${ConfigData.SERVER_URL_PROD}/RejectRequest/${req_id}`,{})
 		refreshPage()
 	}
  

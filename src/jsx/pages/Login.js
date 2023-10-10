@@ -5,9 +5,10 @@ import { loadingToggleAction,loginAction,
 } from '../../store/actions/AuthActions';
 
 //
-import logo from '../../images/logo.png'
-import logo2 from '../../images/Logo_FE.png'
-import logotext from '../../images/logo-text2.png'
+import logo from '../../images/logo.png';
+import logo2 from '../../images/Logo_FE.png';
+import logotext from '../../images/logo-text2.png';
+import ConfigData from '../../config.json';
 
 function Login (props) {
 

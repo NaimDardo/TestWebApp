@@ -15,6 +15,7 @@ import profile09 from "../../../../images/profile/9.jpg";
 import profile from "../../../../images/profile/profile.png";
 import PageTitle from "../../../layouts/PageTitle";
 import axios from "axios";
+import ConfigData from "../../../../config.json";
 
 const AppProfile = () => {
   const [activeToggle, setActiveToggle] = useState("setting");
@@ -44,7 +45,7 @@ const AppProfile = () => {
 	let config = {
 		method: 'put',
 		maxBodyLength: Infinity,
-		url: `http://localhost:8000/users/${current_user_id}`,
+		url: `${ConfigData.SERVER_URL_PROD}/users/${current_user_id}`,
 		headers: { 
 		  'Content-Type': 'application/json', 
 		  'Accept': 'application/json'

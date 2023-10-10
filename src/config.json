@@ -1,0 +1,5 @@
+{
+    "SERVER_URL_PROD": "https://hhsdtv2qd3sa3dxhugv22lu2ei0rflha.lambda-url.eu-north-1.on.aws",
+    "SERVER_URL_TEST": "http://localhost:8000"
+
+}

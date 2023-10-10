@@ -8,6 +8,7 @@ import Alert from "sweetalert2";
 import { formatDate } from '@fullcalendar/core'
 import axios from 'axios'
 import _uniqueId from 'lodash/uniqueId';
+import ConfigData from "../../../../config.json";
 
 class EventCalendar extends Component {
    
@@ -32,7 +33,7 @@ class EventCalendar extends Component {
    }
    getAppointments = () => { try {
       
-      return axios.get(`http://localhost:8000/users/appointmentsC/${this.current_user_id}`).then((response)=>{
+      return axios.get(`${ConfigData.SERVER_URL_PROD}/users/appointmentsC/${this.current_user_id}`).then((response)=>{
         
         
          this.setState({calendarEvents: this.setAppointments(response.data)})
@@ -102,7 +103,7 @@ class EventCalendar extends Component {
             let config = {
                method: 'delete',
                maxBodyLength: Infinity,
-               url: `http://localhost:8000/appointments/${eventClick.event.id}`,
+               url: `${ConfigData.SERVER_URL_PROD}/appointments/${eventClick.event.id}`,
                headers: { 
                  'Accept': 'application/json'
                }
@@ -155,7 +156,7 @@ class EventCalendar extends Component {
        let config = {
          method: 'post',
          maxBodyLength: Infinity,
-         url: 'http://localhost:8000/appointments',
+         url: ConfigData.SERVER_URL_PROD +'/appointments',
          headers: { 
            'Content-Type': 'application/json', 
            'Accept': 'application/json'

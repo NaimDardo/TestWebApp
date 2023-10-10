@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Toggle from 'react-styled-toggle';
 import { Link} from "react-router-dom";
 import {Alert} from 'react-bootstrap';
+import ConfigData from "../../../config.json";
 
 /// Scroll
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -38,11 +39,11 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
    //   setSwitcherState(e.target.checked);
    // }
 	const DispoCR = async (CR_id=userId) => {
-		await axios.put(`http://localhost:8000/nurseDispo/${CR_id}`,{})
+		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseDispo/${CR_id}`,{})
 		
 	}
 	const IndispoCR = async (CR_id=userId) => {
-		await axios.put(`http://localhost:8000/nurseInDispo/${CR_id}`,{})
+		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseInDispo/${CR_id}`,{})
 	}
    const validate = e => {
       if (e.target.checked) {
@@ -68,7 +69,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
       let config = {
          method: 'get',
          maxBodyLength: Infinity,
-         url: `http://localhost:8000/notifications/${userId}`,
+         url: `${ConfigData.SERVER_URL_PROD}/notifications/${userId}`,
          headers: { }
        };
        

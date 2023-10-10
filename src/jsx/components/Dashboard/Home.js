@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import loadable from "@loadable/component";
+import ConfigData from "../../../config.json";
 
 // Images
 import DrAlexandro from "../../../images/doctors/5.jpg";
@@ -36,7 +37,7 @@ const Home = () => {
       let config = {
          method: 'get',
          maxBodyLength: Infinity,
-         url: `http://localhost:8000/stats/${current_user_id}`,
+         url: `${ConfigData.SERVER_URL_PROD}/stats/${current_user_id}`,
          headers: { }
        };
        
