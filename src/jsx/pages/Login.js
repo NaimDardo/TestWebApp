@@ -51,7 +51,7 @@ function Login (props) {
 								<img src={logotext} alt="" className="logo-text ml-1"/>
 							</Link>
 							<div className="mb-4">
-								<h3 className="mb-1 font-w600">Welcome to FeMMeD</h3>
+								<h3 className="mb-1 font-w600">Welcome to PWomen</h3>
 								<p className="">Sign in by entering information below</p>
 							</div>
 							{props.errorMessage && (
@@ -98,17 +98,17 @@ function Login (props) {
 					</div>
 					<div className="col-lg-6 col-md-5 d-flex box-skew1">
 						<div className="inner-content align-self-end">
-							<Link to="/dashboard" className="login-logo">
+							{/* <Link to="/dashboard" className="login-logo">
 								<img src={logo2} alt="" className="logo-icon mr-2"/>
 								<img src={logotext} alt="" className="logo-text ml-1"/>
-							</Link>
-							<h2 className="m-b10 text-white">Login To You Now</h2>
+							</Link> */}
+							{/* <h2 className="m-b10 text-white">Login To You Now</h2>
 							<p className="m-b40 text-white">User Experience & Interface Design Strategy SaaS Solutions</p>
 							<ul className="social-icons mt-4">
 								<li><Link to={"#"}><i className="fa fa-facebook"></i></Link></li>
 								<li><Link to={"#"}><i className="fa fa-twitter"></i></Link></li>
 								<li><Link to={"#"}><i className="fa fa-linkedin"></i></Link></li>
-							</ul>
+							</ul> */}
 						</div>
 					</div>
 				</div>

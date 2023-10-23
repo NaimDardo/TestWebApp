@@ -129,7 +129,7 @@ const Home = () => {
       <div>
          <div className="form-head d-flex mb-3 mb-md-4 align-items-start">
             <div className="mr-auto d-none d-lg-block">
-               <h3 className="text-black font-w600">Welcome to FeMMeD!</h3>
+               <h3 className="text-black font-w600">Welcome to PWomen!</h3>
                <p className="mb-0 fs-18">Dashboard</p>
             </div>
             <div className="input-group search-area ml-auto d-inline-flex">
