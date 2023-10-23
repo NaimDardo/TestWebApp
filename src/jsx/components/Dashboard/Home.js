@@ -21,12 +21,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 /// Scroll
-import PerfectScrollbar from "react-perfect-scrollbar";
-const data =[];
 
-let userDetails = JSON.parse(localStorage.getItem("userDetails"))
 
 const Home = () => {
+   let userDetails = JSON.parse(localStorage.getItem("userDetails"))
    let current_user_id;
    if (userDetails !== undefined){
       current_user_id = userDetails['id']

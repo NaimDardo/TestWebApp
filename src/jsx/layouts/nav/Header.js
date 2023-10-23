@@ -16,8 +16,8 @@ import LogoutLink from './Logout';
 import axios from "axios";
 
 
-const userDetails = JSON.parse(localStorage.getItem("userDetails"))
 const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
+   const userDetails = JSON.parse(localStorage.getItem("userDetails"))
    const [username, setItem] = useState([]);
    const [srcImg, setProfile] = useState([]);
    const [Notifications, setNotifications]= useState([]);
