@@ -50,10 +50,12 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
 	}
    const validate = e => {
       if (e.target.checked) {
+         setToggleValue(true)
          DispoCR()
          console.log("la crèche est disponible")
       }
       else {
+         setToggleValue(false)
          IndispoCR()
          console.log("la crèche n'est pas disponible")
       }
@@ -66,7 +68,6 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
          initialState(userId).then((res) => {setToggleValue(res.data);}).catch((error) => {
             console.log(error);
           });
-         setToggleValue(true)
       }
 
       if (UserName) {
