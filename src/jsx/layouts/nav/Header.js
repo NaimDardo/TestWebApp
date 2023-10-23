@@ -21,6 +21,8 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
    const [username, setItem] = useState([]);
    const [srcImg, setProfile] = useState([]);
    const [Notifications, setNotifications]= useState([]);
+   const [toggleValue, setToggleValue] = useState(false);
+
    var userRole = '';
    var userId = '';
    // try {
@@ -34,10 +36,13 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
       userRole = userDetails['role']
    }
 
-   // const [switcherState, setSwitcherState] = useState(false);
-   // const onHandleChange = e => {
-   //   setSwitcherState(e.target.checked);
-   // }
+   const initialState = async (id=userId) => {
+		return await axios.get(`${ConfigData.SERVER_URL_PROD}nurseStatus/${id}`)
+	}
+   useEffect(()=>{
+      if (userRole==="DN"){
+      initialState().then(async(res) => setToggleValue(res.data))}
+   }, [])
 	const DispoCR = async (CR_id=userId) => {
 		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseDispo/${CR_id}`,{})
 		
@@ -169,7 +174,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
                      >
                      <strong >
                            
-                           <Toggle sliderHeight={10} sliderWidth={10} width={45} height={20} backgroundColorChecked="#36C95F" backgroundColorUnchecked="#ff0000" onChange={validate} labelLeft="Modify nursery's disponibility" />
+                           <Toggle sliderHeight={10} sliderWidth={10} width={45} height={20} backgroundColorChecked="#36C95F" backgroundColorUnchecked="#ff0000" onChange={validate} labelLeft="Modify nursery's disponibility" checked={toggleValue} />
                            
                      </strong>
 
