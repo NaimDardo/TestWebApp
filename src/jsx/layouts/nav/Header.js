@@ -39,10 +39,9 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
    const initialState = async (id=userId) => {
 		return await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`)
 	}
-   useEffect(()=>{
-      if (userRole==="DN"){
-      initialState().then(async(res) => setToggleValue(res.data))}
-   }, [])
+   
+   initialState().then(async(res) => {setToggleValue(res.data); console.log(res);})
+   
 	const DispoCR = async (CR_id=userId) => {
 		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseDispo/${CR_id}`,{})
 		
@@ -64,7 +63,11 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
    useEffect(() => {
       const UserName = JSON.parse(localStorage.getItem('userDetails'))['name'];
       const srcImg = JSON.parse(localStorage.getItem('userDetails'))['imgurl'];
-      
+      if (userRole==="DN"){
+         initialState().then((res) => {setToggleValue(res.data); console.log(res);})
+         setToggleValue(true)
+      }
+
       if (UserName) {
          setItem(UserName);
       }
