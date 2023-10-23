@@ -24,17 +24,19 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
 
    var userRole = '';
    var userId = '';
+   var stat = false;
    if (userDetails !== undefined){
       userId = userDetails['id']
       userRole = userDetails['role']
    }
-   const [toggleValue, setToggleValue] = useState(initialState(userId).then(res => res.data));
-
-
+   // const [toggleValue, setToggleValue] = useState(initialState(userId).then(res => res.data));
+   
+   
    const initialState = async (id) => {
 		await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`)
 	}
-   
+
+
 	const DispoCR = async (CR_id=userId) => {
 		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseDispo/${CR_id}`,{})
 		
@@ -46,13 +48,13 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
 
    const validate = e => {
       if (e.target.checked) {
-         setToggleValue(true)
          DispoCR()
+         stat = true
          console.log("la crèche est disponible")
       }
       else {
-         setToggleValue(false)
          IndispoCR()
+         stat = false
          console.log("la crèche n'est pas disponible")
       }
    }
@@ -61,9 +63,8 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
       const UserName = JSON.parse(localStorage.getItem('userDetails'))['name'];
       const srcImg = JSON.parse(localStorage.getItem('userDetails'))['imgurl'];
       if (userRole==="DN"){
-         initialState(userId).then((res) => {setToggleValue(res.data);}).catch((error) => {
-            console.log(error);
-          });
+         initialState(userId).then((res)=> { stat = res.data})
+
       }
 
       if (UserName) {
@@ -163,7 +164,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
                      >
                      <strong >
                            
-                           <Toggle sliderHeight={10} sliderWidth={10} width={45} height={20} backgroundColorChecked="#36C95F" backgroundColorUnchecked="#ff0000" onChange={validate} labelLeft="Modify nursery's disponibility" checked={toggleValue} />
+                           <Toggle sliderHeight={10} sliderWidth={10} width={45} height={20} backgroundColorChecked="#36C95F" backgroundColorUnchecked="#ff0000" onChange={validate} labelLeft="Modify nursery's disponibility" checked={stat} />
                            
                      </strong>
 
