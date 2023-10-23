@@ -37,7 +37,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
    }
 
    const initialState = async (id=userId) => {
-		return await axios.get(`${ConfigData.SERVER_URL_PROD}nurseStatus/${id}`)
+		return await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`)
 	}
    useEffect(()=>{
       if (userRole==="DN"){
