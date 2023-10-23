@@ -21,51 +21,27 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
    const [username, setItem] = useState([]);
    const [srcImg, setProfile] = useState([]);
    const [Notifications, setNotifications]= useState([]);
+   const [stat, setStatus] = useState(false);
 
    var userRole = '';
    var userId = '';
-   var stat = false;
    if (userDetails !== undefined){
       userId = userDetails['id']
       userRole = userDetails['role']
    }
-   // const [toggleValue, setToggleValue] = useState(initialState(userId).then(res => res.data));
-   
+  
    
    const initialState = async (id) => {
-		await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`).then(async (res)=> {stat = res.data})
+		return await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`)
 	}
-
-   initialState(userId)
-	const DispoCR = async (CR_id=userId) => {
-		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseDispo/${CR_id}`,{})
-		
-	}
-
-	const IndispoCR = async (CR_id=userId) => {
-		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseInDispo/${CR_id}`,{})
-	}
-
-   const validate = e => {
-      if (e.target.checked) {
-         DispoCR()
-         stat = true
-         console.log("la crèche est disponible")
-      }
-      else {
-         IndispoCR()
-         stat = false
-         console.log("la crèche n'est pas disponible")
-      }
-   }
 
    useEffect(() => {
       const UserName = JSON.parse(localStorage.getItem('userDetails'))['name'];
       const srcImg = JSON.parse(localStorage.getItem('userDetails'))['imgurl'];
-      // if (userRole==="DN"){
-      //    initialState(userId).then(async(res)=> { stat = res.data;}).catch(error =>(console.log(error)))
+      if (userRole==="DN"){
+         initialState(userId).then(async(res)=> { await setStatus(res.data)})
 
-      // }
+      }
 
       if (UserName) {
          setItem(UserName);
@@ -88,6 +64,30 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
          console.log(error);
        });
    }, []);
+
+	const DispoCR = async (CR_id=userId) => {
+		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseDispo/${CR_id}`,{})
+		
+	}
+
+	const IndispoCR = async (CR_id=userId) => {
+		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseInDispo/${CR_id}`,{})
+	}
+
+   const validate = e => {
+      if (e.target.checked) {
+         DispoCR()
+         setStatus(true)
+         console.log("la crèche est disponible")
+      }
+      else {
+         IndispoCR()
+         setStatus(false)
+         console.log("la crèche n'est pas disponible")
+      }
+   }
+
+  
 
    
    var FinalNotif= [];
