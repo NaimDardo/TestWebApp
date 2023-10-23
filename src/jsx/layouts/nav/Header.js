@@ -36,8 +36,8 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
       userRole = userDetails['role']
    }
 
-   const initialState = async (id=userId) => {
-		return await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`)
+   const initialState = async (id) => {
+		await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`)
 	}
    
    
@@ -63,7 +63,9 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
       const UserName = JSON.parse(localStorage.getItem('userDetails'))['name'];
       const srcImg = JSON.parse(localStorage.getItem('userDetails'))['imgurl'];
       if (userRole==="DN"){
-         initialState().then((res) => {setToggleValue(res.data); console.log(res);})
+         initialState(userId).then((res) => {setToggleValue(res.data); console.log(res);}).catch((error) => {
+            console.log(error);
+          });
          setToggleValue(true)
       }
 
@@ -87,11 +89,6 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
        .catch((error) => {
          console.log(error);
        });
-      // if () {
-
-      // }
-      
-   
    }, []);
    // var Notfications = [{"id": "1234","title": "Notification1", "Description": "My notif Descr 1", "CreatedAt": new Date("2023-06-26 13:15")}, 
    // {"id": "1235","title": "Notification2", "Description": "My notif Descr 2", "CreatedAt": new Date("2023-06-26 12:25")},
