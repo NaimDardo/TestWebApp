@@ -40,7 +40,6 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
 		return await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`)
 	}
    
-   initialState().then(async(res) => {setToggleValue(res.data); console.log(res);})
    
 	const DispoCR = async (CR_id=userId) => {
 		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseDispo/${CR_id}`,{})
