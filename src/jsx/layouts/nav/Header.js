@@ -21,33 +21,29 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
    const [username, setItem] = useState([]);
    const [srcImg, setProfile] = useState([]);
    const [Notifications, setNotifications]= useState([]);
-   const [toggleValue, setToggleValue] = useState(false);
 
    var userRole = '';
    var userId = '';
-   // try {
-   //    userRole = JSON.parse(localStorage.getItem("userDetails"))['role'];
-   //    userId = JSON.parse(localStorage.getItem("userDetails"))['id'];
-   // } catch (error) {
-   //   console.log(error) 
-   // }
    if (userDetails !== undefined){
       userId = userDetails['id']
       userRole = userDetails['role']
    }
+   const [toggleValue, setToggleValue] = useState(initialState(userId).then(res => res.data));
+
 
    const initialState = async (id) => {
 		await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`)
 	}
    
-   
 	const DispoCR = async (CR_id=userId) => {
 		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseDispo/${CR_id}`,{})
 		
 	}
+
 	const IndispoCR = async (CR_id=userId) => {
 		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseInDispo/${CR_id}`,{})
 	}
+
    const validate = e => {
       if (e.target.checked) {
          setToggleValue(true)
@@ -91,14 +87,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
          console.log(error);
        });
    }, []);
-   // var Notfications = [{"id": "1234","title": "Notification1", "Description": "My notif Descr 1", "CreatedAt": new Date("2023-06-26 13:15")}, 
-   // {"id": "1235","title": "Notification2", "Description": "My notif Descr 2", "CreatedAt": new Date("2023-06-26 12:25")},
-   // {"id": "1236","title": "Notification3", "Description": "My notif Descr 3", "CreatedAt": new Date("2023-06-25 16:15")},
-   // {"id": "1237","title": "Notification4", "Description": "My notif Descr 4", "CreatedAt": new Date("2023-06-24 14:20")}
-   // ]
 
-
-   
    
    var FinalNotif= [];
    const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric', hour: "2-digit",
