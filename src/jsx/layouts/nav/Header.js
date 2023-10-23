@@ -63,7 +63,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
       const UserName = JSON.parse(localStorage.getItem('userDetails'))['name'];
       const srcImg = JSON.parse(localStorage.getItem('userDetails'))['imgurl'];
       if (userRole==="DN"){
-         initialState(userId).then((res) => {setToggleValue(res.data); console.log(res);}).catch((error) => {
+         initialState(userId).then((res) => {setToggleValue(res.data);}).catch((error) => {
             console.log(error);
           });
          setToggleValue(true)
