@@ -33,10 +33,10 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
    
    
    const initialState = async (id) => {
-		await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`)
+		await axios.get(`${ConfigData.SERVER_URL_PROD}/nurseStatus/${id}`).then(async (res)=> {stat = res.data})
 	}
 
-
+   initialState(userId)
 	const DispoCR = async (CR_id=userId) => {
 		await axios.put(`${ConfigData.SERVER_URL_PROD}/nurseDispo/${CR_id}`,{})
 		
@@ -62,10 +62,10 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onBox }) => {
    useEffect(() => {
       const UserName = JSON.parse(localStorage.getItem('userDetails'))['name'];
       const srcImg = JSON.parse(localStorage.getItem('userDetails'))['imgurl'];
-      if (userRole==="DN"){
-         initialState(userId).then((res)=> { stat = res.data})
+      // if (userRole==="DN"){
+      //    initialState(userId).then(async(res)=> { stat = res.data;}).catch(error =>(console.log(error)))
 
-      }
+      // }
 
       if (UserName) {
          setItem(UserName);
